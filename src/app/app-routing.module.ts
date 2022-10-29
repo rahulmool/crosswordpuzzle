@@ -8,8 +8,24 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'test',
     pathMatch: 'full'
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'createcrossword',
+    loadChildren: () => import('./createcrossword/createcrossword.module').then( m => m.CreatecrosswordPageModule)
+  },
+  {
+    path: 'editcrossword',
+    loadChildren: () => import('./editcrossword/editcrossword.module').then( m => m.EditcrosswordPageModule)
   },
 ];
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {}
+  listData=[];
+  constructor(private dataservice:DataService) {
+    this.loadData();
+  }
+  async loadData(){
+    this.listData = await this.dataservice.getData();
+  }
+  async addData(){
+    await this.dataservice.addData(`Simon ${Math.floor(Math.random()*100)}`);
+    this.loadData();
+  }
+  async removeItem(index){
+    this.dataservice.removeItem(index);
+    this.listData.splice(index,1);
+     
+  }
+   
 
 }

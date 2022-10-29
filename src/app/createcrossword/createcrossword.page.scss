@@ -1,0 +1,28 @@
+tr{
+    border: 1px solid black;
+    height: 13px;
+    background-color:primary;
+  }
+  .noborder{
+    border:0px;
+    border-style:hidden;
+  }
+  
+  
+  .row {
+    margin-left:5px;
+    margin-right:5px;
+  }
+    
+  .column {
+    float: left;
+    width: 30%;
+    padding: 5px;
+  }
+  table {
+    border-spacing: 30px;
+  }
+  .round{
+    padding-right: 40px;
+    padding-left: 40px;
+  }
