@@ -20,8 +20,11 @@ export class HomePage {
   }
   async removeItem(index){
     this.dataservice.removeItem(index);
-    this.listData.splice(index,1);
-     
+    this.listData.splice(index,1);   
+  }
+  async replacedata(){
+    await this.dataservice.replace(`Simon ${Math.floor(Math.random()*100)}`,3);
+    this.loadData();
   }
    
 

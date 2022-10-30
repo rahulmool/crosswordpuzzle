@@ -1,5 +1,17 @@
 <ion-header>
 </ion-header>
 
-<ion-content>
+<ion-content >
+  <br/><br/>
+  <table style="margin-left:auto;margin-right:auto;">
+    <td *ngFor="let item of [].constructor(col); let i= index">
+      <tr *ngFor="let item of [].constructor(row); let j = index" (click)="fun(i,j)" >
+        <div *ngIf=" b[j][i]!=''; else elseBlock;">
+        <div class="box " (click)="alertbox(j,i)">{{b[j][i]}}</div>
+      </div>
+      <ng-template #elseBlock><div class="emptybox"></div></ng-template>
+      </tr>
+    </td>
+  </table>
+  
 </ion-content>

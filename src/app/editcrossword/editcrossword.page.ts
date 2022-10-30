@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-editcrossword',
@@ -6,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editcrossword.page.scss'],
 })
 export class EditcrosswordPage implements OnInit {
-  col=26
-  row=26
-  range=[1,2,3,4,5,6,7,1,1,1,1,1,1,1,]
+  col = 26
+  row = 26
+  range = [1, 2, 3, 4, 5, 6, 7, 1, 1, 1, 1, 1, 1, 1,]
   b = [['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ['', '', '', '', '', 'd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ['', '', '', '', '', 'd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -36,12 +39,39 @@ export class EditcrosswordPage implements OnInit {
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ]
-  constructor() { }
-  
-  
+  object = {
+    name: 'subham',
+    age: '34',
+    address: '34 street, Delhi, India',
+    favourite_movie: ['dhoom', 'race 2', 'krishh'],
+    detail: {
+      height: '6ft',
+      weight: '70kg'
+    }
+  }
+  index={
+    number:1,
+  }
+  constructor(public navCtrl: NavController, public router: Router) {
+
+  }
   ngOnInit() {
   }
-  
-  
-
+  onGoToNextPage() {
+    this.navCtrl.navigateForward('/createcrossword');
+  }
+  logout() {
+    this.navCtrl.navigateForward('/login');
+  }
+  //https://stackoverflow.com/questions/52187282/ionic-4-how-to-pass-data-between-pages-using-navctrl-or-router-service
+  direction() {
+    this.index.number=-1;
+    this.router.navigate(['/createcrossword'], {
+      queryParams: {
+        value: JSON.stringify(this.index)
+      },
+    });
+  }
 }
+
+

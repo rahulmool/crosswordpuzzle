@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  constructor() { }
+  username:string;
+  password:string;
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
+  }
+  fun(){
+    if(this.username==="admin"&& this.password==="adm@123"){
+      console.log("suceessful login as admin");
+      this.navCtrl.navigateForward('/editcrossword');
+    }
+    console.log(this.username,this.password);
   }
 
 }

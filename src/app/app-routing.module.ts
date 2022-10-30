@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'test',
+    redirectTo: 'createcrossword',
     pathMatch: 'full'
   },
   {

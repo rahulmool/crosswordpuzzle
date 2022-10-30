@@ -1,4 +1,19 @@
 <ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title >
+      Cross-Word Puzzles
+    </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="logout()">
+        logout
+      </ion-button>
+      <!--ion-button>
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button-->
+      
+      
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -6,7 +21,7 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let item of range;index as i">
-        <ion-card color="secondary" class="ion-text-center">
+        <ion-card (click)="direction()"  color="secondary" class="ion-text-center">
           <ion-card-header>
             <ion-card-title>Puzzle {{i+1}}</ion-card-title>
             <!--ion-card-subtitle>Card Subtitle</ion-card-subtitle-->
@@ -33,7 +48,7 @@
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card color="secondary" class="ion-text-center">
+        <ion-card (click)="direction()" color="secondary" class="ion-text-center">
           <ion-card-header>
             <ion-card-title>Add Another Puzzle</ion-card-title>
             <ion-icon name="add"></ion-icon>

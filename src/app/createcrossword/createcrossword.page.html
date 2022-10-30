@@ -21,31 +21,36 @@
         <!--style="margin-left:auto/2;margin-right:auto/2;"-->
         <td *ngFor="let item of [].constructor(col); let i= index">
           <tr *ngFor="let item of [].constructor(row); let j = index" (click)="fun(i,j)" >
-            <ion-button expand="full" color="light">{{b[j][i]}}</ion-button>
+            <div *ngIf=" redbox(i,j); else elseBlock;">
+            <ion-button expand="full" color="medium">{{b[j][i]}}</ion-button>
+            </div>
+            <ng-template #elseBlock>
+              <ion-button expand="full" color="light">{{b[j][i]}}</ion-button>
+            </ng-template>
           </tr>
         </td>
       </table>
       </td>
       
       <td >
-        rows:
-        <ion-item *ngFor="let item of right;index as i" class="noborder"> {{i+1}}.{{item}} 
+        Right:
+        <ion-item *ngFor="let item of right;index as i" class="noborder"> ({{item.i+1}},{{item.j+1}})-> {{item.clue}}
           <ion-buttons slot="end">
-            <ion-button  color="primary">
+            <ion-button  (click)="editright(i)" color="primary">
               <ion-icon name="create" slot="start"></ion-icon>
             </ion-button>
-            <ion-button  color="primary"> <!--(click)="deleteTask(i)"-->
+            <ion-button (click)="deleteright(i)" color="primary" > <!--(click)="deleteTask(i)"-->
               <ion-icon name="trash" slot="start"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-item>
-        <br/>colms:
-        <ion-item  *ngFor="let item of down;index as i" class="noborder">{{i+1}}.{{item}}
+        <br/>Down:
+        <ion-item  *ngFor="let item of down;index as i" class="noborder">({{item.i+1}},{{item.j+1}})-> {{item.clue}}
           <ion-buttons slot="end">
-            <ion-button  color="primary">
+            <ion-button (click)="editdown(i)" color="primary">
               <ion-icon name="create" slot="start"></ion-icon>
             </ion-button>
-            <ion-button  color="primary"> <!--(click)="deleteTask(i)"-->
+            <ion-button  color="primary" (click)="deletedown(i)"> <!--(click)="deleteTask(i)"-->
               <ion-icon name="trash" slot="start"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -58,11 +63,11 @@
   <br />
   <div class="round">
   <ion-text>number of rows:{{row}}</ion-text>
-  <ion-range [min]="1" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
+  <ion-range [min]="varminrow" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
     (ionChange)="onIonChangerow($event)"></ion-range>
   <ion-text>number of colums:{{col}}</ion-text>
-  <ion-range [min]="1" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
+  <ion-range [min]="varmincol" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
     (ionChange)="onIonChangecol($event)"></ion-range>
-  <ion-button expand="full">next</ion-button>
+  <ion-button expand="full" (click)="toeditcrossword()">next</ion-button>
   </div>
 </ion-content>
