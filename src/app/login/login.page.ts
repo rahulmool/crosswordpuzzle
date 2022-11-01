@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
     if(this.username==="admin"&& this.password==="adm@123"){
       console.log("suceessful login as admin");
       this.navCtrl.navigateForward('/editcrossword');
+    }else{
+      this.navCtrl.navigateForward('/test');
     }
     console.log(this.username,this.password);
   }

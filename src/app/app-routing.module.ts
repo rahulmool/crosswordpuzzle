@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'editcrossword',
     loadChildren: () => import('./editcrossword/editcrossword.module').then( m => m.EditcrosswordPageModule)
   },
+  {
+    path: 'play',
+    loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
+  },
 ];
 
 @NgModule({

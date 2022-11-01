@@ -1,0 +1,26 @@
+ion-content {
+
+    --ion-background-color: #f4f5f8;
+  }
+  
+  .box {
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 1px solid blue;
+  }
+  
+  .box2 {
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 1px solid red;
+  }
+  
+  .emptybox {
+    width: 30px;
+    height: 30px;
+    background-color: #f4f5f8;
+    box-sizing: border-box;
+    border: 1px solid #f4f5f8;
+  }

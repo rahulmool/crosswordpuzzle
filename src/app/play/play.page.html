@@ -13,7 +13,9 @@
               <div *ngIf="check(i,j,0); else otherblock;">
                 <div class="box2 " (click)="aftercheck(i,j,0)">
                   <div *ngIf="this.b[i][j]!='';else bblock;">
+                    <div class="ion-text-center">
                     {{this.b[i][j]}}
+                    </div>
                   </div>
                   <ng-template #bblock>
                     <div class="box2">
@@ -29,7 +31,9 @@
 
                 <div *ngIf="this.b[i][j]!='';else bblocktwo;">
                   <div class="box " (click)="aftercheck(i,j,0)">
-                    {{this.b[i][j]}}
+                    <div class="ion-text-center">
+                      {{this.b[i][j]}}
+                      </div>
                   </div>
                 </div>
                 <ng-template #bblocktwo>
