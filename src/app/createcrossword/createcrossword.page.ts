@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, RangeCustomEvent } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { PuzzleService} from '../services/puzzle.service'
+import { LocaldataService } from '../services/localdata.service';
 
 @Component({
   selector: 'app-createcrossword',
@@ -41,10 +41,27 @@ export class CreatecrosswordPage implements OnInit {
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ]
-  constructor(private alertController: AlertController, public navCtrl: NavController, public activatedRoute: ActivatedRoute,private puzzleservice:PuzzleService) {
+  index;
+  admindata;
+  constructor(private alertController: AlertController, public navCtrl: NavController, public activatedRoute: ActivatedRoute,public localdata:LocaldataService) {
     this.activatedRoute.queryParams.subscribe((res) => {
       console.log(JSON.parse(res.value));
+      this.index=JSON.parse(res.value).number;
+      if(this.index!=-1){
+        this.admindata=this.localdata.getdata(this.index);
+        for(let i=0;i<26;i++){
+          for(let j=0;j<26;j++){
+            
+          }
+        }
+        this.b=this.admindata.array;
+        this.down=this.admindata.down;
+        this.right=this.admindata.right;
+        this.row=this.admindata.row;
+        this.col=this.admindata.col;
+      }
     });
+    
   }
   save;
   down = [];
@@ -57,8 +74,14 @@ export class CreatecrosswordPage implements OnInit {
     this.save={array:this.b,
       down:this.down,
       right:this.right,
+      col:this.col,
+      row:this.row
     }
-    await this.puzzleservice.addData(this.save);
+    if(this.index==-1){
+      this.localdata.adddata(this.save)
+    }else{
+      this.localdata.addatindex(this.save,this.index)
+    }
   }
   async fun(i, j) {
     console.log(i, j);
@@ -77,7 +100,7 @@ export class CreatecrosswordPage implements OnInit {
             answer: data.string
           }
           //console.log('Confirm Cancel: blah');
-          this.filldown(j, i, data.string);
+          this.filldown(i, j, data.string);
           //this.down.push(" (" + pj + "," + pi + ") " + data.clue);
           this.down.push(jsondown);
           // if(this.varmincol<j){
@@ -99,7 +122,7 @@ export class CreatecrosswordPage implements OnInit {
           }
           //console.log('Confirm Cancel: blah');
           //console.log(data.string);
-          this.fillright(j, i, data.string);
+          this.fillright(i, j, data.string);
           this.right.push(jsonright);
           // if(this.varmincol<i+data.string.length){
           //   this.varmincol=i+data.string.length;
@@ -158,7 +181,7 @@ export class CreatecrosswordPage implements OnInit {
   removedown(p,j,size){
     console.log("inside remove down")
     for (let i = 0; i < size; i++) {
-      this.b[p + i][j] = '';
+      this.b[p ][j+ i] = '';
     }
   }
   filldown(p, j, string) {
@@ -183,7 +206,7 @@ export class CreatecrosswordPage implements OnInit {
             answer: data.string
           }
           this.deleteright(remove);
-          this.filldown(j, i, data.string);
+          this.filldown(i, j, data.string);
           this.down.push(jsondown);
         }
       }, {
@@ -197,7 +220,7 @@ export class CreatecrosswordPage implements OnInit {
             answer: data.string
           }
           this.deleteright(remove);
-          this.fillright(j, i, data.string);
+          this.fillright(i, j, data.string);
           this.right.push(jsonright);
         }
       }],
@@ -237,7 +260,7 @@ export class CreatecrosswordPage implements OnInit {
             answer: data.string
           }
           this.deletedown(remove);
-          this.filldown(j, i, data.string);
+          this.filldown(i, j, data.string);
           this.down.push(jsondown);
         }
       }, {
@@ -251,7 +274,7 @@ export class CreatecrosswordPage implements OnInit {
             answer: data.string
           }
           this.deletedown(remove);
-          this.fillright(j, i, data.string);
+          this.fillright(i, j, data.string);
           this.right.push(jsonright);
         }
       }],
@@ -282,7 +305,7 @@ export class CreatecrosswordPage implements OnInit {
   }
   deleteright(i){
     //console.log("This is inside delete right: "+i);
-    this.removeright(this.right[i].j,this.right[i].i,this.right[i].answer.length);
+    this.removeright(this.right[i].i,this.right[i].j,this.right[i].answer.length);
     this.right.splice(i,1);
   }
   removeright(p,j,size){
@@ -314,6 +337,7 @@ export class CreatecrosswordPage implements OnInit {
   }
   toeditcrossword() {
     this.savedata();
-    this.navCtrl.navigateForward('/editcrossword');
+    console.log(this.save);
+    //this.navCtrl.navigateForward('/editcrossword');
   }
 }

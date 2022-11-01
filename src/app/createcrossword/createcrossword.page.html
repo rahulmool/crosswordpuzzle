@@ -19,13 +19,13 @@
       <td class="round">
       <table>
         <!--style="margin-left:auto/2;margin-right:auto/2;"-->
-        <td *ngFor="let item of [].constructor(col); let i= index">
-          <tr *ngFor="let item of [].constructor(row); let j = index" (click)="fun(i,j)" >
+        <td *ngFor="let item of [].constructor(col); let j= index">
+          <tr *ngFor="let item of [].constructor(row); let i = index" (click)="fun(i,j)" >
             <div *ngIf=" redbox(i,j); else elseBlock;">
-            <ion-button expand="full" color="medium">{{b[j][i]}}</ion-button>
+            <ion-button expand="full" color="medium">{{b[i][j]}}</ion-button>
             </div>
             <ng-template #elseBlock>
-              <ion-button expand="full" color="light">{{b[j][i]}}</ion-button>
+              <ion-button expand="full" color="light">{{b[i][j]}}</ion-button>
             </ng-template>
           </tr>
         </td>
@@ -63,10 +63,10 @@
   <br />
   <div class="round">
   <ion-text>number of rows:{{row}}</ion-text>
-  <ion-range [min]="varminrow" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
+  <ion-range [min]="varminrow" [max]="26" [value]="this.row" [pin]="true" [ticks]="true" [snaps]="true"
     (ionChange)="onIonChangerow($event)"></ion-range>
   <ion-text>number of colums:{{col}}</ion-text>
-  <ion-range [min]="varmincol" [max]="26" [value]="13" [pin]="true" [ticks]="true" [snaps]="true"
+  <ion-range [min]="varmincol" [max]="26" [value]="this.col" [pin]="true" [ticks]="true" [snaps]="true"
     (ionChange)="onIonChangecol($event)"></ion-range>
   <ion-button expand="full" (click)="toeditcrossword()">next</ion-button>
   </div>
