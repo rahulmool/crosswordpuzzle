@@ -2,74 +2,97 @@
 </ion-header>
 
 <ion-content>
-  <br /><br />
+  <ion-fab fill=“clear” vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button fill=“clear” color="light" (click)="direction()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <br/><br/>
   <ion-grid>
+    <ion-row ><ion-col><div class="ion-text-center">{{counter.hrs}} hours : {{counter.min}} min : {{counter.sec}} sec</div><br/></ion-col></ion-row>
     <ion-row>
       <ion-col>
-      <table style="margin-left:100px;margin-right:100px;">
-        <td *ngFor="let item of [].constructor(this.admindata[0].col); let j= index">
-          <tr *ngFor="let item of [].constructor(this.admindata[0].row); let i = index" (click)="fun(i,j)">
-            <div *ngIf=" this.admindata[0].array[i][j]!=''; else elseBlock;">
-              <div *ngIf="check(i,j,0); else otherblock;">
-                <div class="box2 " (click)="aftercheck(i,j,0)">
-                  <div *ngIf="this.b[i][j]!='';else bblock;">
-                    <div class="ion-text-center">
-                    {{this.b[i][j]}}
+        <table style="margin-left:auto;margin-right:auto">
+          <td *ngFor="let item of [].constructor(this.admindata[0].col); let j= index">
+            <tr *ngFor="let item of [].constructor(this.admindata[0].row); let i = index" (click)="fun(i,j)">
+              <div *ngIf=" this.admindata[0].array[i][j]!=''; else elseBlock;">
+                <div *ngIf="check(i,j,0); else otherblock;">
+                  <div class="box2 " (click)="aftercheck(i,j,0)">
+                    <div *ngIf="this.b[i][j]!='';else bblock;">
+                      <div class="ion-text-center">
+                        {{this.b[i][j]}}
+                      </div>
+                    </div>
+                    <ng-template #bblock>
+                      <div class="box2">
+                        {{findindex(i,j,0)}}
+                        <ion-text color="light">s</ion-text>
+                      </div>
+                    </ng-template>
+
+                    <!--this.admindata[0].array[j][i]-->
+                  </div>
+                </div>
+                <ng-template #otherblock>
+
+                  <div *ngIf="this.b[i][j]!='';else bblocktwo;">
+                    <div class="box " (click)="aftercheck(i,j,0)">
+                      <div class="ion-text-center">
+                        {{this.b[i][j]}}
+                      </div>
                     </div>
                   </div>
-                  <ng-template #bblock>
-                    <div class="box2">
-                      {{findindex(i,j,0)}}
+                  <ng-template #bblocktwo>
+                    <!--This section prints where there is not data in b[i][j]-->
+
+                    <div class="box">
                       <ion-text color="light">s</ion-text>
                     </div>
                   </ng-template>
-
                   <!--this.admindata[0].array[j][i]-->
-                </div>
-              </div>
-              <ng-template #otherblock>
 
-                <div *ngIf="this.b[i][j]!='';else bblocktwo;">
-                  <div class="box " (click)="aftercheck(i,j,0)">
-                    <div class="ion-text-center">
-                      {{this.b[i][j]}}
-                      </div>
-                  </div>
-                </div>
-                <ng-template #bblocktwo>
-                  <!--This section prints where there is not data in b[i][j]-->
-
-                  <div class="box">
-                    <ion-text color="light">s</ion-text>
-                  </div>
                 </ng-template>
-                <!--this.admindata[0].array[j][i]-->
-
-              </ng-template>
-            </div>
-            <ng-template #elseBlock>
-              <div class="emptybox">
-                <ion-text color="light">s</ion-text>
               </div>
-            </ng-template>
-          </tr>
-        </td>
-      </table>
+              <ng-template #elseBlock>
+                <div class="blackbox">s
+                  <ion-text color="beige">s</ion-text>
+                </div>
+              </ng-template>
+            </tr>
+          </td>
+        </table>
       </ion-col>
-      <ion-col>Right:
-        <ion-item *ngFor="let item of right;index as p" class="noborder"> 
-          {{p+1}}. {{item.clue}}, answer:{{item.answer}}
-          
-        </ion-item>
-      </ion-col><ion-col>Down:
-        <ion-item *ngFor="let item of down;index as p" class="noborder">
-          {{p+1}}. {{item.clue}} ,answer:{{item.answer}}
-          
-        </ion-item>
-  
-  </ion-col>
-     </ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item-group>
+            <ion-item-divider color="tertiary">
+              <ion-label>
+                Right:
+              </ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let item of right;index as p" class="noborder">
+              {{p+1}}. {{item.clue}} <!--answer:{{item.answer}}-->
+
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item-divider color="secondary">
+              <ion-label>
+                Down:
+              </ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let item of down;index as p" class="noborder">
+              {{p+1}}. {{item.clue}} <!--,answer:{{item.answer}},answer:{{item.answer}}-->
+
+            </ion-item>
+          </ion-item-group>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
 
   </ion-grid>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
 </ion-content>

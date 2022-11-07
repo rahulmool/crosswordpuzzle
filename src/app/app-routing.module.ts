@@ -5,7 +5,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'editcrossword',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {

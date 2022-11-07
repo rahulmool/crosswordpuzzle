@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, RangeCustomEvent } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { LocaldataService } from '../services/localdata.service';
+import { ArrayService } from '../services/array.service';
 
 @Component({
   selector: 'app-createcrossword',
@@ -43,7 +44,7 @@ export class CreatecrosswordPage implements OnInit {
   ]
   index;
   admindata;
-  constructor(private alertController: AlertController, public navCtrl: NavController, public activatedRoute: ActivatedRoute,public localdata:LocaldataService) {
+  constructor( private arrservice:ArrayService,private alertController: AlertController, public navCtrl: NavController, public activatedRoute: ActivatedRoute,public localdata:LocaldataService) {
     this.activatedRoute.queryParams.subscribe((res) => {
       console.log(JSON.parse(res.value));
       this.index=JSON.parse(res.value).number;
@@ -175,13 +176,13 @@ export class CreatecrosswordPage implements OnInit {
   }
   deletedown(i){
     console.log(this.down[i]);
-    this.removedown(this.down[i].j,this.down[i].i,this.down[i].answer.length);
+    this.removedown(this.down[i].i,this.down[i].j,this.down[i].answer.length);
     this.down.splice(i,1);
   }
   removedown(p,j,size){
     console.log("inside remove down")
     for (let i = 0; i < size; i++) {
-      this.b[p ][j+ i] = '';
+      this.b[p+ i ][j] = '';
     }
   }
   filldown(p, j, string) {
@@ -336,8 +337,9 @@ export class CreatecrosswordPage implements OnInit {
     return false;
   }
   toeditcrossword() {
+    //console.log(this.arrservice.returnarray(this.down,this.right))
     this.savedata();
-    console.log(this.save);
-    //this.navCtrl.navigateForward('/editcrossword');
+    //console.log(this.save);
+    this.navCtrl.navigateForward('/editcrossword');
   }
 }
