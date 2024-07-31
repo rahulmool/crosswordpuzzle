@@ -50,8 +50,8 @@ export class CreatecrosswordPage implements OnInit {
       this.index=JSON.parse(res.value).number;
       if(this.index!=-1){
         this.admindata=this.localdata.getdata(this.index);
-        for(let i=0;i<26;i++){
-          for(let j=0;j<26;j++){
+        for(let i=0;i<9;i++){
+          for(let j=0;j<9;j++){
             
           }
         }
@@ -141,7 +141,7 @@ export class CreatecrosswordPage implements OnInit {
           name: 'string',
           placeholder: 'string',
           attributes: {
-            maxlength: 26,
+            maxlength: 9,
           },
         },
         {
@@ -155,8 +155,8 @@ export class CreatecrosswordPage implements OnInit {
     await alert.present();
   }
   ngOnInit() {
-    this.row = 13;
-    this.col = 13;
+    this.row = 9;
+    this.col = 9;
   }
   onIonChangerow(ev: Event) {
     //console.log((ev as RangeCustomEvent).detail.value);
@@ -230,7 +230,7 @@ export class CreatecrosswordPage implements OnInit {
           name: 'string',
           placeholder: 'string',
           attributes: {
-            maxlength: 26,
+            maxlength: 9,
           },
           value:answer
         },
@@ -284,7 +284,7 @@ export class CreatecrosswordPage implements OnInit {
           name: 'string',
           placeholder: 'string',
           attributes: {
-            maxlength: 26,
+            maxlength: 9,
           },
           value:answer
         },

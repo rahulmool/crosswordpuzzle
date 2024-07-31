@@ -200,7 +200,7 @@ export class PlayPage implements OnInit {
             name: 'string',
             placeholder: 'string',
             attributes: {
-              maxlength: 26,
+              maxlength: 9,
             },
           }
         ],
@@ -243,7 +243,7 @@ export class PlayPage implements OnInit {
             name: 'string',
             placeholder: 'string',
             attributes: {
-              maxlength: 26,
+              maxlength: 9,
             },
           }
         ],
@@ -280,7 +280,7 @@ export class PlayPage implements OnInit {
           name: 'string',
           placeholder: 'string',
           attributes: {
-            maxlength: 26,
+            maxlength: 9,
           },
         },
         {
